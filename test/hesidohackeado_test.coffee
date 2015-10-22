@@ -61,7 +61,7 @@ describe "hesidohackeado", ->
     it "se espera que no obtenga registros", ->
       expect(room.messages).to.eql([
         ["pepito", "hubot hesidohackeado #{email}"],
-        ["hubot", ":tada: Felicidades no hay registros para #{email} :tada:"]
+        ["hubot", ":tada: ¡Felicidades! No hay registros para #{email} :tada:"]
       ])
 
   context "email invalido", ->
