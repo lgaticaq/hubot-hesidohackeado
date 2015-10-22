@@ -41,7 +41,7 @@ describe "hesidohackeado", ->
           ">*Autor*: smitz\n" +
           ">*Sitio*: siph0n\n" +
           ">*Red*: clearnet\n" +
-          ">*Emails*: 7744\n" +
+          ">*Emails*: 7.744\n" +
           ">*Tamaño*: #{filesize(2721878)}\n" +
           ">*Enlace*: https://hesidohackeado.com/leak/siph0n-4033\n\n"
         ]

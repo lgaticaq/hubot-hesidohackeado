@@ -13,6 +13,7 @@
 
 filesize = require("filesize")
 moment = require("moment")
+numberFormat = require("underscore.string/numberFormat")
 
 module.exports = (robot) ->
   emailPattern = "([\\w.-]+@[\\w.-]+\\.[a-zA-Z.]{2,6})"
@@ -46,7 +47,7 @@ module.exports = (robot) ->
             text += ">*Autor*: #{d.author}\n"
             text += ">*Sitio*: #{d.source_provider}\n"
             text += ">*Red*: #{d.source_network}\n"
-            text += ">*Emails*: #{d.emails_count}\n"
+            text += ">*Emails*: #{numberFormat(d.emails_count, 0, ",", ".")}\n"
             text += ">*Tamaño*: #{filesize(d.source_size)}\n"
             text += ">*Enlace*: #{d.details}\n\n"
           res.send text
