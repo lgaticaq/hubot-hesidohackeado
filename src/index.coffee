@@ -32,7 +32,7 @@ module.exports = (robot) ->
         if data.status is "badsintax"
           res.reply "Email mal ingresado"
         else if data.status is "notfound"
-          res.send ":tada: Felicidades no hay registros para #{email} :tada:"
+          res.send ":tada: ¡Felicidades! No hay registros para #{email} :tada:"
         else if data.status is "found"
           text = ""
           if data.results is 1
