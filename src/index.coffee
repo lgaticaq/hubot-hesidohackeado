@@ -36,9 +36,9 @@ module.exports = (robot) ->
         else if data.status is "found"
           text = ""
           if data.results is 1
-            text += ">Hay *1* registro para #{email}"
+            text += ">Hay *1* registro para #{email}\n"
           else
-            text += ">Hay *#{data.results}* registros para #{email}"
+            text += ">Hay *#{data.results}* registros para #{email}\n"
           format = "YYYY-MM-DD HH:mm:ss"
           for d in data.data
             text += ">*Fecha*: #{moment(d.date_leaked).format(format)}\n"

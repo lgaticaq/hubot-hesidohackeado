@@ -35,7 +35,7 @@ describe "hesidohackeado", ->
         ["pepito", "hubot hesidohackeado #{email}"],
         [
           "hubot",
-          ">Hay *1* registro para #{email}" +
+          ">Hay *1* registro para #{email}\n" +
           ">*Fecha*: #{moment("2015-09-04T00:00:00+02:00").format(format)}\n" +
           ">*Título*: Multiple Dating/Marriage Websites (9)\n" +
           ">*Autor*: smitz\n" +
