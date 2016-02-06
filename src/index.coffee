@@ -6,7 +6,7 @@
 #   "moment": "^2.10.6"
 #
 # Commands:
-#   hubot hesidohackeado <email> -> Hay 1 registro para <email> ...
+#   hubot hesidohackeado <email> -> Retorna listado de sitios comprometidos con el email registrado
 #
 # Author:
 #   lgaticaq
