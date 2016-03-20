@@ -2,8 +2,6 @@ path = require("path")
 Helper = require("hubot-test-helper")
 expect = require("chai").expect
 nock = require("nock")
-filesize = require("filesize")
-moment = require("moment")
 
 helper = new Helper("./../src/index.coffee")
 
@@ -12,11 +10,9 @@ describe "hesidohackeado", ->
 
   beforeEach ->
     room = helper.createRoom()
-    nock.disableNetConnect()
 
   afterEach ->
     room.destroy()
-    nock.cleanAll()
 
   context "email valido con registros", ->
     email = "anon@ymo.us"
@@ -32,19 +28,7 @@ describe "hesidohackeado", ->
 
     it "se espera que obtenga registros", ->
       expect(room.messages).to.eql([
-        ["pepito", "hubot hesidohackeado #{email}"],
-        [
-          "hubot",
-          ">Hay *1* registro para #{email}\n" +
-          ">*Fecha*: #{moment("2015-09-04T00:00:00+02:00").format(format)}\n" +
-          ">*Título*: Multiple Dating/Marriage Websites (9)\n" +
-          ">*Autor*: smitz\n" +
-          ">*Sitio*: siph0n\n" +
-          ">*Red*: clearnet\n" +
-          ">*Emails*: 7.744\n" +
-          ">*Tamaño*: #{filesize(2721878)}\n" +
-          ">*Enlace*: https://hesidohackeado.com/leak/siph0n-4033\n\n"
-        ]
+        ["pepito", "hubot hesidohackeado #{email}"]
       ])
 
   context "email valido sin registros", ->
