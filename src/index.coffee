@@ -27,7 +27,7 @@ module.exports = (robot) ->
       .get() (err, response, body) ->
         if err
           res.reply "ocurrio un error al consultar el email"
-          robot.emit "error", err, res
+          robot.emit "error", err, response
           return
         data = JSON.parse body
         if data.status is "badsintax"
