@@ -2,8 +2,7 @@
 #   Verifica si un email ha sido comprometido en alguna ruptura de seguridad
 #
 # Dependencies:
-#   "filesize": "^3.1.3",
-#   "moment": "^2.10.6"
+#   None
 #
 # Commands:
 #   hubot hesidohackeado <email> -> Retorna listado de sitios comprometidos con el email registrado
@@ -11,11 +10,13 @@
 # Author:
 #   lgaticaq
 
-filesize = require("filesize")
-moment = require("moment")
-numberFormat = require("underscore.string/numberFormat")
-
 module.exports = (robot) ->
+  sendAttachment = (attachments, res) ->
+    data =
+      attachments: attachments
+      channel: res.message.room
+    robot.emit "slack.attachment", data
+
   emailPattern = "([\\w.-]+@[\\w.-]+\\.[a-zA-Z.]{2,6})"
   regex = new RegExp("hesidohackeado #{emailPattern}", "i")
   robot.respond regex, (res) ->
@@ -35,21 +36,19 @@ module.exports = (robot) ->
         else if data.status is "notfound"
           res.send ":tada: ¡Felicidades! No hay registros para #{email} :tada:"
         else if data.status is "found"
-          text = ""
           if data.results is 1
-            text += ">Hay *1* registro para #{email}\n"
+            text = "Hay 1 registro para #{email}"
           else
-            text += ">Hay *#{data.results}* registros para #{email}\n"
+            text = "Hay #{data.results} registros para #{email}"
           format = "YYYY-MM-DD HH:mm:ss"
-          for d in data.data
-            text += ">*Fecha*: #{moment(d.date_leaked).format(format)}\n"
-            text += ">*Título*: #{d.title}\n"
-            text += ">*Autor*: #{d.author}\n"
-            text += ">*Sitio*: #{d.source_provider}\n"
-            text += ">*Red*: #{d.source_network}\n"
-            text += ">*Emails*: #{numberFormat(d.emails_count, 0, ",", ".")}\n"
-            text += ">*Tamaño*: #{filesize(d.source_size)}\n"
-            text += ">*Enlace*: #{d.details}\n\n"
-          res.send text
+          fields = data.data.map (x) ->
+            title: x.title
+            value: "Fecha: #{x.date_leaked.substr(0, 10)}"
+            short: true
+          attachments =
+            fallback: text
+            text: text
+            fields: fields
+          sendAttachment attachments, res
         else
           res.reply "La respuesta no es la esperada"
