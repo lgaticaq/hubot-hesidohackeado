@@ -1,6 +1,6 @@
 {
   "name": "hubot-hesidohackeado",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "description": "Un script hubot para consultar https://hesidohackeado.com",
   "main": "index.coffee",
   "scripts": {
